@@ -1,6 +1,7 @@
 import React from "react";
 
 import "../general.css";
+import FetchedData from "../FetchedData/fetchedData"
 
 const Inputs = () => {
   return (
@@ -13,6 +14,7 @@ const Inputs = () => {
           % <i className="fas fa-compress-arrows-alt ml-2"></i>{" "}
         </span>
         <input
+       defaultValue={5}
           type="number"
           placeholder="Фиксна каматна стапка"
           min="0"

@@ -4,7 +4,7 @@ import Inputs from "./calculator/inputs/inputs";
 import CreditOptions from "./calculator/creditOptions/creditOptions";
 import BankOptions from "./calculator/bankOptions/bankOptions";
 import Toggle from "./toggleButton/toggleButton";
-import FetchedData from "./calculator/FetchedData/fetchedData";
+import FetchedData from "./calculator/FetchedData/fetchedData"
 
 class Calculator extends Component {
   constructor(props) {
