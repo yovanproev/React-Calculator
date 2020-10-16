@@ -1,0 +1,36 @@
+{
+  "data" : [
+    {"bankId" :1, 
+      "loans" : [ { 
+       "id": 1,
+       "interestRate": 5
+       },
+      { 
+       "id": 2,
+       "interestRate": 3,
+       "variableInterestedRate": 4.5
+     },
+     { 
+      "id": 3,
+      "interestRate": 5,
+      "variableInterestedRate": 7
+    }
+     ]},
+    {"bankId": 2,
+      "loans": [ { 
+       "id": 1,
+       "interestRate": 5.5
+       },
+      { 
+       "id": 2,
+       "interestRate": 3.3,
+       "variableInterestedRate": 4.2
+     },
+     { 
+      "id": 3,
+      "interestRate": 5.3,
+      "variableInterestedRate": 7.2
+    }
+     ]}
+  ]
+}

@@ -1,10 +1,28 @@
-import React from "react";
+import React, {useState, useEffect}  from "react";
 
 import "../general.css";
-import FetchedData from "../FetchedData/fetchedData"
+import { fetchLoansByBankId } from "../../../data/fetchData"
 
-const Inputs = () => {
-  return (
+const Inputs = ({bankId, loanType}) => {
+
+  const [bankData, setBankData] = useState(null);
+  const [loan, setLoan] = useState(null);
+
+  useEffect(() => {
+    const data = bankId ? fetchLoansByBankId(bankId) : null;
+    setBankData(data);
+    let selectLoan = data.filter(loan => loan.id === loanType);
+    if (selectLoan.length > 0) {
+      selectLoan = selectLoan[0];
+    } else {
+      selectLoan = null;
+    }
+    setLoan(selectLoan)
+  }, [bankId, loanType])
+
+  if(!bankData) return <p>Loading ...</p>
+
+  return bankData && (
     <div className="form">
       <div className="inputFields">
         <p className="description">Фиксна каматна стапка</p>
@@ -14,7 +32,7 @@ const Inputs = () => {
           % <i className="fas fa-compress-arrows-alt ml-2"></i>{" "}
         </span>
         <input
-       defaultValue={5}
+          value={loan.interestRate}
           type="number"
           placeholder="Фиксна каматна стапка"
           min="0"
@@ -22,6 +40,7 @@ const Inputs = () => {
           step="0.1"
         />
       </div>
+      {loan.variableInterestedRate && 
       <div className="inputFields">
         <p className="description">Варијабилна каматна стапка</p>
         <span className="signs">
@@ -35,8 +54,10 @@ const Inputs = () => {
           min="0"
           max="100"
           step="0.1"
+          value={loan.variableInterestedRate}
         />
       </div>
+      }
       <div className="inputFields">
         <p className="description">Износ на кредит</p>{" "}
         <span className="signs">МКД</span>
