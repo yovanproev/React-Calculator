@@ -1,28 +1,30 @@
 import React, {useState, useEffect}  from "react";
-
-import "../general.css";
 import { fetchLoansByBankId } from "../../../data/fetchData"
+import { getFormulaByLoanType } from './../../../data/fetchData';
 
-const Inputs = ({bankId, loanType}) => {
+const Calculate = ({bankId, loanType}) => {
 
   const [bankData, setBankData] = useState(null);
   const [loan, setLoan] = useState(null);
 
   useEffect(() => {
     const data = bankId ? fetchLoansByBankId(bankId) : null;
-    setBankData(data);
-    let selectLoan = data.filter(loan => loan.id === loanType);
-    if (selectLoan.length > 0) {
-      selectLoan = selectLoan[0];
+    let selectedLoan = data.filter(loan => loan.id === loanType);
+    if (selectedLoan.length > 0) {
+      selectedLoan = selectedLoan[0];
     } else {
-      selectLoan = null;
+      selectedLoan = null;
     }
-    setLoan(selectLoan)
+    setBankData(data);
+    setLoan(selectedLoan)
   }, [bankId, loanType])
 
   if(!bankData) return <p>Loading ...</p>
 
-  return bankData && (
+  const calculateFn = getFormulaByLoanType(loan.id);
+  console.log(calculateFn);
+
+    return bankData && loan && (
     <div className="form">
       <div className="inputFields">
         <p className="description">Фиксна каматна стапка</p>
@@ -40,7 +42,7 @@ const Inputs = ({bankId, loanType}) => {
           step="0.1"
         />
       </div>
-      {loan.variableInterestedRate && 
+      {loan.variableInterestRate && 
       <div className="inputFields">
         <p className="description">Варијабилна каматна стапка</p>
         <span className="signs">
@@ -54,7 +56,7 @@ const Inputs = ({bankId, loanType}) => {
           min="0"
           max="100"
           step="0.1"
-          value={loan.variableInterestedRate}
+          value={loan.variableInterestRate}
         />
       </div>
       }
@@ -66,20 +68,23 @@ const Inputs = ({bankId, loanType}) => {
           placeholder="Износ на кредит"
           min="0"
           step="1000"
+          value={loan.loanAmountMin}
         />
       </div>
       <div className="inputFields">
         <p className="description">Години и месеци со фиксна камата</p>{" "}
-        <input type="number" placeholder="Години" min="0" max="10" step="1" />
-        <input type="number" placeholder="Месеци" min="0" max="12" step="1" />
+        <input type="number" placeholder="Години" min="0" max="10" step="1" value={loan.yearsFixed}/>
+        <input type="number" placeholder="Месеци" min="0" max="12" step="1" defaultValue={0}/>
       </div>
-      <div className="inputFields">
+      {loan.variableInterestRate && 
+       <div className="inputFields">
         <p className="description">Години и месеци со варијабилна камата</p>{" "}
-        <input type="number" placeholder="Години" min="0" max="25" step="1" />
-        <input type="number" placeholder="Месеци" min="0" max="12" step="1" />
+        <input type="number" placeholder="Години" min="0" max="25" step="1" value={loan.yearsVariable}/>
+        <input type="number" placeholder="Месеци" min="0" max="12" step="1" defaultValue={0}/>
       </div>
+      }
     </div>
   );
 };
 
-export default Inputs;
+export default Calculate;

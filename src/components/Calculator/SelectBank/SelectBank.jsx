@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { fetchAllBanks } from "../../../data/fetchData";
-import "../general.css";
-class BankOptions extends Component {
 
+
+class SelectBank extends Component {
   state = {
     banks: []
   }
@@ -34,4 +34,4 @@ class BankOptions extends Component {
   }
 }
 
-export default BankOptions;
+export default SelectBank;
