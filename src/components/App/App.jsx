@@ -5,6 +5,7 @@ import SelectLoan from "../Calculator/SelectLoan/SelectLoan";
 import SelectBank from "../Calculator/SelectBank/SelectBank";
 import Calculations from "../Calculator/Calculate/Calculations/Calculations";
 import Toggle from "../toggleButton/ToggleButton";
+import { fetchLoansByBankId } from "../../data/fetchData";
 
 class Calculator extends Component {
   constructor(props) {
@@ -19,26 +20,46 @@ class Calculator extends Component {
       monthsFixed: 0,
       variableYears: 0,
       variableMonths: 0,
-      isToggleOn: true,
+      isToggleOn: false,
       loanAmountMin: 0
     };
   }
 
   selectBankHandler = value => {
+    const data = value ? fetchLoansByBankId(value) : null;
+
     this.setState(prevState => ({
       ...prevState,
+      loanAmountMin: data[this.selectedLoanId || 0].loanAmountMin,
+      yearsFixed: data[this.selectedLoanId || 0].yearsFixed,
       selectedLoanId: undefined,
       selectedBankId: value
     }));
   };
 
   selectLoanHandler = value => {
+    const data = value ? fetchLoansByBankId(value) : null;
     this.setState(prevState => ({
       ...prevState,
       selectedLoanId: value
     }));
   };
 
+  setDefaults() {
+    this.setState({
+      selectedBankId: null,
+      selectedLoanId: undefined,
+      fixedInterestRate: 0,
+      variableInterestRate: 0,
+      amountOfLoan: 0,
+      yearsFixed: 0,
+      monthsFixed: 0,
+      variableYears: 0,
+      variableMonths: 0,
+      isToggleOn: true,
+      loanAmountMin: 0
+    });
+  }
   // calculateLoanHandler = value => {
   //   this.setState(prevState => ({
   //     ...prevState,
@@ -70,22 +91,31 @@ class Calculator extends Component {
               console.log("SET Years Fixed", st1);
               this.setState(st1);
             }}
-                setMonthsFixed={st2 => {
+            setMonthsFixed={st2 => {
               console.log("SET Months Fixed", st2);
               this.setState(st2);
             }}
-                      />
+          />
         ) : null}
-        {this.state.selectedLoanId ? <Toggle
-          // loan={this.calculateLoanHandler}
-          clickToggleButton={() => {
-            this.setState({ isToggleOn: false });
-          }}
-        /> : null }
-        {!this.state.isToggleOn ? (
-          <Calculations loanAmount={this.state.loanAmountMin} yearsFixed={this.state.yearsFixed} monthsFixed={this.state.monthsFixed}/>
-        ) : null }
-      
+        {this.state.selectedLoanId ? (
+          <Toggle
+            // loan={this.calculateLoanHandler}
+            clickToggleButton={isToggleOn => {
+              if (!isToggleOn) {
+                console.log("RESETIRAJ");
+                this.setDefaults();
+              }
+              this.setState({ isToggleOn: isToggleOn });
+            }}
+          />
+        ) : null}
+        {this.state.isToggleOn ? (
+          <Calculations
+            loanAmount={this.state.loanAmountMin}
+            yearsFixed={this.state.yearsFixed}
+            monthsFixed={this.state.monthsFixed}
+          />
+        ) : null}
       </div>
     );
   }

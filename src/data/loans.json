@@ -13,8 +13,8 @@
        "id": 2,
        "interestRate": 3,
        "variableInterestRate": 4.5,
-       "loanAmountMin": 300750,
-       "loanAmountMax": 12000000,
+       "loanAmountMin": 307500,
+       "loanAmountMax": 12300000,
        "yearsFixed": 10,
        "monthsFixed": 12,
        "yearsVariable": 25,
@@ -24,7 +24,7 @@
       "id": 3,
       "interestRate": 4.5,
       "variableInterestRate": 6.5,
-      "loanAmountMin": 300750,
+      "loanAmountMin": 307500,
       "loanAmountMax": 6150000,
       "yearsFixed": 3,
       "monthsFixed": 12,
@@ -35,15 +35,19 @@
     {"bankId": 2,
       "loans": [ { 
        "id": 1,
-       "interestRate": 5.5
+       "interestRate": 5.5,
+       "loanAmountMin": 30750,
+       "loanAmountMax": 600000,
+       "yearsFixed": 7,
+       "monthsFixed": 12
        },
       { 
         "id": 2,
         "interestRate": 2.8,
         "variableInterestRate": 4.8,
-        "loanAmountMin": 300750,
-        "loanAmountMax": 12000000,
-        "yearsFixed": 10,
+        "loanAmountMin": 307500,
+        "loanAmountMax": 9225000,
+        "yearsFixed": 5,
         "monthsFixed": 12,
         "yearsVariable": 25,
         "monthsVariable": 12
@@ -52,13 +56,77 @@
       "id": 3,
       "interestRate": 4.7,
       "variableInterestRate": 6.7,
-      "loanAmountMin": 300750,
-      "loanAmountMax": 6150000,
+      "loanAmountMin": 307500,
+      "loanAmountMax": 4920000,
       "yearsFixed": 3,
       "monthsFixed": 12,
       "yearsVariable": 17,
       "monthsVariable": 12
     }
-     ]}
+     ]},
+     {"bankId": 3,
+       "loans": [ { 
+        "id": 1,
+        "interestRate": 5.5,
+        "loanAmountMin": 30750,
+        "loanAmountMax": 600000,
+        "yearsFixed": 7,
+        "monthsFixed": 12
+        },
+       { 
+         "id": 2,
+         "interestRate": 2.8,
+         "variableInterestRate": 4.8,
+         "loanAmountMin": 300750,
+         "loanAmountMax": 12000000,
+         "yearsFixed": 10,
+         "monthsFixed": 12,
+         "yearsVariable": 25,
+         "monthsVariable": 12
+      },
+      { 
+       "id": 3,
+       "interestRate": 4.7,
+       "variableInterestRate": 6.7,
+       "loanAmountMin": 300750,
+       "loanAmountMax": 6150000,
+       "yearsFixed": 3,
+       "monthsFixed": 12,
+       "yearsVariable": 17,
+       "monthsVariable": 12
+     }
+      ]},
+      {"bankId": 4,
+        "loans": [ { 
+         "id": 1,
+         "interestRate": 5.5,
+         "loanAmountMin": 30750,
+         "loanAmountMax": 600000,
+         "yearsFixed": 7,
+         "monthsFixed": 12
+         },
+        { 
+          "id": 2,
+          "interestRate": 2.8,
+          "variableInterestRate": 4.8,
+          "loanAmountMin": 300750,
+          "loanAmountMax": 12000000,
+          "yearsFixed": 10,
+          "monthsFixed": 12,
+          "yearsVariable": 25,
+          "monthsVariable": 12
+       },
+       { 
+        "id": 3,
+        "interestRate": 4.7,
+        "variableInterestRate": 6.7,
+        "loanAmountMin": 300750,
+        "loanAmountMax": 6150000,
+        "yearsFixed": 3,
+        "monthsFixed": 12,
+        "yearsVariable": 17,
+        "monthsVariable": 12
+      }
+       ]}
   ]
 }

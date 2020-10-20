@@ -14,9 +14,9 @@ class ToggleButton extends Component {
   }
 
   handleClick() {
-    this.props.clickToggleButton();
-    this.setState(state => ({
-      isToggleOn: !state.isToggleOn
+    this.props.clickToggleButton(!this.state.isToggleOn);
+    this.setState(() => ({
+      isToggleOn: !this.state.isToggleOn
     }));
   }
 
@@ -24,7 +24,7 @@ class ToggleButton extends Component {
     return (
       <div>
         <button className="button" onClick={this.handleClick}>
-          {!this.state.isToggleOn ? "Пресметај" : "Ресетирај форма" }
+          {!this.state.isToggleOn ? "Пресметај" : "Ресетирај форма"}
         </button>
       </div>
     );
