@@ -1,6 +1,7 @@
 import loansData from "./loans.json"
 import banksData from "./banks.json"
 import loanTypes from "./loanTypes.json"
+import FixedInstallmentsFormula from "../components/Calculator/Calculate/Calculations/installmentsFormula"
 
 export const fetchAllBanks = () => {
   return banksData.data;
@@ -29,11 +30,26 @@ export const fetchLoansByBankId = (bankId) => {
   }
 }
 
-export const getFormulaByLoanType = loanId => {
-  switch (loanId) {
-    case 1:
-      function formula (amount, years, months, rate) { const numpay = parseFloat((years * 12) + months); const monthly = parseFloat(rate / 12); const payment = (amount * monthly) / (1 - Math.pow(1 + monthly, -numpay)); const total = payment * numpay; const interest = total - amount; return ({ total, interest }) };
-      return formula;
+export const getFormulaByLoanType = (loanId, bankId) => {
+  switch (loanId | bankId) {
+    case 1 | 1:
+      FixedInstallmentsFormula();
+      return FixedInstallmentsFormula;
+      case 2 | 1:
+        FixedInstallmentsFormula();
+      return FixedInstallmentsFormula;
+      case 3 | 1:
+        FixedInstallmentsFormula();
+      return FixedInstallmentsFormula;
+      case 1 | 2:
+        FixedInstallmentsFormula();
+      return FixedInstallmentsFormula;
+      case 2 | 2:
+        FixedInstallmentsFormula();
+      return FixedInstallmentsFormula;
+      case 3 | 2:
+        FixedInstallmentsFormula();
+      return FixedInstallmentsFormula;
     default:
       throw new Error("No formula found")
   }

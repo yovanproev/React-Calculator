@@ -68,18 +68,18 @@ const Calculate = ({bankId, loanType}) => {
           placeholder="Износ на кредит"
           min="0"
           step="1000"
-          value={loan.loanAmountMin}
+          defaultValue={loan.loanAmountMin}
         />
       </div>
       <div className="inputFields">
         <p className="description">Години и месеци со фиксна камата</p>{" "}
-        <input type="number" placeholder="Години" min="0" max="10" step="1" value={loan.yearsFixed}/>
+        <input type="number" placeholder="Години" min="0" max="10" step="1" defaultValue={loan.yearsFixed}/>
         <input type="number" placeholder="Месеци" min="0" max="12" step="1" defaultValue={0}/>
       </div>
       {loan.variableInterestRate && 
        <div className="inputFields">
         <p className="description">Години и месеци со варијабилна камата</p>{" "}
-        <input type="number" placeholder="Години" min="0" max="25" step="1" value={loan.yearsVariable}/>
+        <input type="number" placeholder="Години" min="0" max="25" step="1" defaultValue={loan.yearsVariable}/>
         <input type="number" placeholder="Месеци" min="0" max="12" step="1" defaultValue={0}/>
       </div>
       }
